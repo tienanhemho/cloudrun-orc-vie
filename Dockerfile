@@ -1,5 +1,5 @@
 # Use the official Node.js image.
-FROM node:14
+FROM node:20
 
 # Install Tesseract OCR and Vietnamese language data.
 RUN apt-get update && \
@@ -8,8 +8,10 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Install necessary libraries for sharp
-RUN apt-get update && \
-    apt-get install -y libvips-dev
+RUN apt-get install -y libvips-dev
+
+# Install sharp
+RUN npm install sharp
 
 # Create app directory
 WORKDIR /usr/src/app

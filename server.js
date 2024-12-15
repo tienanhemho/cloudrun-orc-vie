@@ -39,6 +39,7 @@ app.post('/orc', upload.single('image'), (req, res) => {
     .catch(err => {
       // Clean up temporary files
       fs.unlinkSync(inputFilePath);
+      fs.unlinkSync(outputFilePath);
       res.status(500).json({ error: 'Failed to preprocess image', details: err.message });
     });
 });
